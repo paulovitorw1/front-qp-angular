@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="row d-flex align-items-center">
+    <div class="col">
+      <div class="card-text">
+        <h3>
+          <b>{{ getDateTime(cardData?.departure) | date : "HH:mm" }} </b>
+          <i class="pi pi-arrow-right"></i>
+          {{ getDateTime(cardData?.arrival) | date : "HH:mm" }}
+        </h3>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card-text">
+        <p>{{ cardData?.from?.name }}</p>
+        <p>{{ cardData?.to?.name }}</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card-text">
+        <p>{{ cardData?.seatClass }}</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card-text">
+        <p>{{ cardData?.price?.price | currency : "BRL" }}</p>
+        <p>(1 Pessoa)</p>
+      </div>
+    </div>
+    <div class="col" *ngIf="isButtonVisible">
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="handleClick(cardData!)"
+      >
+        Escolher Passagem
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<h3>Encontre a sua passagem de ônibus!</h3>
+<div class="card">
+  <div class="card-body">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col mb-3">
+        <label>Local de embarque</label>
+        <p-autoComplete
+          [(ngModel)]="selectedDepartureItem"
+          [suggestions]="suggestionsCity"
+          (completeMethod)="search($event)"
+          [placeholder]="'Partida de'"
+          field="name"
+        ></p-autoComplete>
+      </div>
+      <div class="col mb-3">
+        <label>Local de desembarque</label>
+        <p-autoComplete
+          [(ngModel)]="selectedArrivalItem"
+          [suggestions]="suggestionsCity"
+          (completeMethod)="search($event)"
+          [placeholder]="'Indo para'"
+          field="name"
+        ></p-autoComplete>
+      </div>
+      <div class="col mb-3">
+        <label>Categorias</label>
+        <p-calendar
+          [(ngModel)]="travelDate"
+          dateFormat="dd/mm/yy"
+          [minDate]="currentDate"
+        ></p-calendar>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-primary" (click)="fetchPassages()">
+          Buscar Passagem
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-12" *ngFor="let card of listPassages; let i = index">
+    <h3 *ngIf="i == 0">
+      Passagens de ônibus de {{ card?.from?.name }} para
+      {{ card?.to?.name }}
+    </h3>
+    <app-card
+      [cardData]="card"
+      (travelId)="redirectListSeat($event)"
+    ></app-card>
+  </div>
+</div>
+<p-toast></p-toast>

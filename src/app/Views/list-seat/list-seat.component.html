@@ -1,0 +1,38 @@
+<h3>
+  Passagens de ônibus de {{ travelInformation?.from?.name }} para
+  {{ travelInformation?.to?.name }}
+</h3>
+<app-card [cardData]="travelInformation" [isButtonVisible]="false"></app-card>
+<br />
+<h3>Listagem de poltronas</h3>
+<div class="container">
+  <div class="d-flex justify-content-center mb-4">
+    <div class="mt-2 me-3 text-center">
+      <label for="forInformationSeat">Livre</label>
+      <div class="card m-auto">
+        <div class="card-body">Nº</div>
+      </div>
+    </div>
+    <div class="mt-2 text-center">
+      <label for="forInformationSeat">Ocupado</label>
+      <div class="card m-auto">
+        <div class="card-body"><i class="pi pi-times"></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let seat of listSeats" class="col-3 mt-3">
+      <div class="card m-auto">
+        <div class="card-body">
+          <i class="pi pi-times" *ngIf="seat.occupied; else elseBlock"></i>
+          <ng-template #elseBlock>
+            <span>
+              {{ seat.seat }}
+            </span></ng-template
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
