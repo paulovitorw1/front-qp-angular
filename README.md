@@ -1,5 +1,9 @@
 # front-qp-angular
 
+## Clone the project repository:
+```shell
+git clone https://github.com/paulovitorw1/front-qp-angular.git
+```
 ## Project setup
 ```
 npm install
